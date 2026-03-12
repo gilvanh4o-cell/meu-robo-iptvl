@@ -18,4 +18,11 @@ jobs:
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add ml
+         
+      - name: Salvar Arquivo
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m "Lista Atualizada" || exit 0
+          git push
