@@ -1,28 +1,36 @@
-name: Robo do Gilvan
+
+name: Robô do Gilvan IPTV
+
 on:
   schedule:
-    - cron: '*/15 * * * *'
-  workflow_dispatch:
+    - cron: '*/15 * * * *' # Roda a cada 15 minutos
+  workflow_dispatch: # Permite que você rode o robô manualmente
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - name: Baixar Código do Repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar o Python
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
-      - run: pip install requests
-      - run: python main.py
-      - name: Salvar Arquivo
+          python-version: '3.9'
+
+      - name: Instalar Dependências
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-         
-      - name: Salvar Arquivo
+          pip install requests
+          # Se o seu script usar outras bibliotecas, adicione aqui embaixo
+
+      - name: Executar Script do Robô
+        run: python main.py
+
+      - name: Salvar e Publicar a Lista
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
           git add .
-          git commit -m "Lista Atualizada" || exit 0
+          git commit -m "Lista de canais atualizada automaticamente" || exit 0
           git push
