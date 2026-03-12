@@ -3,11 +3,13 @@ name: Robo-Gilvan-IPTV
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */4 * * *' # Roda a cada 4 horas automaticamente
+    - cron: '0 */4 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: # ISSO AQUI É A CHAVE DO SUCESSO!
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -17,8 +19,8 @@ jobs:
         run: python main.py
       - name: Salvar Arquivo
         run: |
-          git config --global user.name "Gilvan"
-          git config --global user.email "gilvan@exemplo.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Lista atualizada" || exit 0
           git push
