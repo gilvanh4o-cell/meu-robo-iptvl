@@ -2,22 +2,21 @@ name: Robo-Gilvan-IPTV
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 */4 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: # ISSO AQUI É A CHAVE DO SUCESSO!
+    permissions:
       contents: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      - name: Executar Robo
-        run: python main.py
-      - name: Salvar Arquivo
+      - name: Rodar Script
+        run: |
+          python main.py
+      - name: Salvar Mudancas
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
