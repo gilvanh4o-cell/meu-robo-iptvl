@@ -1,0 +1,11 @@
+import os
+
+print("--- Iniciando Manipulação do Robô ---")
+
+# Essa é a sua lista inicial de teste
+lista = "#EXTM3U\n#EXTINF:-1, Canal do Gilvan\nhttp://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+
+with open("lista_gilvan.m3u", "w", encoding="utf-8") as f:
+    f.write(lista)
+
+print("--- Sucesso: Lista lista_gilvan.m3u criada! ---")
