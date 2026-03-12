@@ -1,0 +1,19 @@
+name: Robo-Gilvan
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - run: python main.py
+      - name: Salvar
+        run: |
+          git config --global user.name "Gilvan"
+          git config --global user.email "gilvan@exemplo.com"
+          git add .
+          git commit -m "Lista gerada" || exit 0
+          git push
