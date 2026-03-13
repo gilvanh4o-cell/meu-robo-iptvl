@@ -1,0 +1,15 @@
+name: atualizar lista
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: rodar script
+        run: python main.py
